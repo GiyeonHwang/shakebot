@@ -1,0 +1,21 @@
+[Unit]
+Description=Discord Team Bot
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=discord-team-bot
+Group=discord-team-bot
+WorkingDirectory=/opt/discord-team-bot
+EnvironmentFile=/etc/discord-team-bot.env
+ExecStart=/usr/bin/node /opt/discord-team-bot/dist/index.js
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
